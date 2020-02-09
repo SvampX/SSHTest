@@ -1,4 +1,4 @@
-package sample;
+package sample.solid;
 
 public class Point {
     private int x;

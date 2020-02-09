@@ -1,4 +1,4 @@
-package sample;
+package sample.solid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Rectangle {
 
     List<Point> getSquare(){
         for(int i = leftHigh.getX();i <= rightLow.getX(); i++){
-            for (int j = leftHigh.getY(); j >= rightLow.getY(); j--) {
+            for (int j = leftHigh.getY(); j <= rightLow.getY(); j++) {
                 square.add(new Point(i,j));
             }
         }
