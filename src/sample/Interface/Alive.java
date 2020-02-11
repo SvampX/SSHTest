@@ -4,4 +4,6 @@ public interface Alive {
     boolean isAlive();
     int getLife();
 
+
+
 }
