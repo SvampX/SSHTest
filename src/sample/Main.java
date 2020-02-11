@@ -42,6 +42,7 @@ public class Main extends Application {
         Stage newStage = gameViewManager.getGameStage();
         newStage.show();
 
+
     }
 
 
