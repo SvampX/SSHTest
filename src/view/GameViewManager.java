@@ -32,11 +32,12 @@ public class GameViewManager {
             GridPane.setConstraints(backgroundImage1, i%3,i/3);
             backgroundGridPane.getChildren().add(backgroundImage1);
         }
-        backgroundGridPane.setViewOrder(-1);
         gamePane.getChildren().addAll(backgroundGridPane);
         Solid testBlock = new Solid();
-        testBlock.setLayoutX(100);
-        testBlock.setLayoutY(200);
+        testBlock.setLayoutX(0);
+        testBlock.setFitWidth(100);
+        testBlock.setFitHeight(100);
+        testBlock.setLayoutY(0);
         sceneObjects.add(testBlock);
         gamePane.getChildren().addAll(sceneObjects);
     }
