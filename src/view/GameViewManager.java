@@ -1,16 +1,21 @@
 package view;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GameViewManager {
     private AnchorPane gamePane;
     private Scene gameScene;
     private Stage gameStage;
+    private List<Node> sceneObjects = new ArrayList<>();
 
     private static final int GAME_WIDTH = 750;
     private static final int GAME_HEIGHT = 750;
@@ -49,5 +54,7 @@ public class GameViewManager {
         gameStage = new Stage();
         gameStage.setTitle("SeriousTank");
         gameStage.setScene(gameScene);
+        //Вот тут мы добавляем стартовые обьекты на сцене: tank, brick wall, immortal wall
+        //sceneObjects.add();
     }
 }
