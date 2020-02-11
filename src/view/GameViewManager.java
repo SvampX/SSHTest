@@ -23,7 +23,7 @@ public class GameViewManager {
     private GridPane gridPane1;
     private GridPane gridPane2;
     private final static String BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
-    private final static String TANK_IMAGE = "view/resources/tank_green.png";
+    private final static String TANK_IMAGE_GREEN = "view/resources/tank_green.png";
     private Node tank;
     boolean goNorth, goSouth, goEast, goWest;
 
@@ -31,7 +31,7 @@ public class GameViewManager {
     private void createBackgroundAndTank() {
         gridPane1 = new GridPane();
         gridPane2 = new GridPane();
-        tank = new ImageView(TANK_IMAGE);
+        tank = new ImageView(TANK_IMAGE_GREEN);
         Group tank1 = new Group();
         tank1.getChildren().add(tank);
 
@@ -99,17 +99,22 @@ public class GameViewManager {
             public void handle(long number) {
                 int dx = 0;
                 int dy = 0;
+
                 if (goNorth) {
                     dy -= 1;
+                    tank.setRotate(180.0);
                 }
                 if (goSouth) {
                     dy += 1;
+                    tank.setRotate(0.0);
                 }
                 if (goEast) {
                     dx += 1;
+                    tank.setRotate(270.0);
                 }
                 if (goWest) {
                     dx -= 1;
+                    tank.setRotate(90.0);
                 }
                 moveTankBy(dx, dy);
             }
