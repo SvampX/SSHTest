@@ -1,8 +1,9 @@
 package sample.Interface;
 
-import javafx.scene.control.skin.TextInputControlSkin;
+
+import sample.simpletypes.Direction;
 
 public interface Movable {
-    public void move(int speed, TextInputControlSkin.Direction direction, sample.solid.Rectangle rectangle);
+    public void move(int speed, Direction direction, sample.solid.Rectangle rectangle);
 
 }
