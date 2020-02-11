@@ -1,6 +1,7 @@
 package sample.solid;
 
 public class ImmortalWall {
+//ImmortalWall
     private String texture;
 
     public String texture() {
