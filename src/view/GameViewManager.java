@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import sample.solid.Solid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ public class GameViewManager {
     private static final int GAME_HEIGHT = 750;
 
     private GridPane backgroundGridPane;
-    private GridPane gridPane2;
     private final static String  BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
 
     private void createBackground(){
@@ -32,12 +32,18 @@ public class GameViewManager {
             GridPane.setConstraints(backgroundImage1, i%3,i/3);
             backgroundGridPane.getChildren().add(backgroundImage1);
         }
-
+        backgroundGridPane.setViewOrder(-1);
         gamePane.getChildren().addAll(backgroundGridPane);
+        Solid testBlock = new Solid();
+        testBlock.setLayoutX(100);
+        testBlock.setLayoutY(200);
+        sceneObjects.add(testBlock);
+        gamePane.getChildren().addAll(sceneObjects);
     }
 
     public GameViewManager(){
         initializeStage();
+        createBackground();
         createKeyListners();
     }
 
@@ -45,7 +51,7 @@ public class GameViewManager {
 
     }
     public Stage getGameStage(){
-        createBackground();
+        //createBackground();
         return gameStage;
     }
     private void initializeStage() {
@@ -55,6 +61,6 @@ public class GameViewManager {
         gameStage.setTitle("SeriousTank");
         gameStage.setScene(gameScene);
         //Вот тут мы добавляем стартовые обьекты на сцене: tank, brick wall, immortal wall
-        //sceneObjects.add();
+
     }
 }
