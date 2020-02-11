@@ -1,9 +1,12 @@
 package view;
 
+import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,6 +25,7 @@ public class GameViewManager {
     private final static String BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
     private final static String TANK_IMAGE = "view/resources/tank_green.png";
     private Node tank;
+    boolean goNorth, goSouth, goEast, goWest;
 
 
     private void createBackgroundAndTank() {
@@ -47,11 +51,94 @@ public class GameViewManager {
 
     public GameViewManager() {
         initializeStage();
-        createKeyListners();
+        createKeyListener();
     }
 
-    private void createKeyListners() {
+    private void createKeyListener() {
+        gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:
+                        goNorth = true;
+                        break;
+                    case DOWN:
+                        goSouth = true;
+                        break;
+                    case LEFT:
+                        goWest = true;
+                        break;
+                    case RIGHT:
+                        goEast = true;
+                        break;
+                }
+            }
+        });
+        gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:
+                        goNorth = false;
+                        break;
+                    case DOWN:
+                        goSouth = false;
+                        break;
+                    case LEFT:
+                        goWest = false;
+                        break;
+                    case RIGHT:
+                        goEast = false;
+                        break;
+                }
+            }
+        });
 
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long number) {
+                int dx = 0;
+                int dy = 0;
+                if (goNorth) {
+                    dy -= 1;
+                }
+                if (goSouth) {
+                    dy += 1;
+                }
+                if (goEast) {
+                    dx += 1;
+                }
+                if (goWest) {
+                    dx -= 1;
+                }
+                moveTankBy(dx, dy);
+            }
+        };
+        timer.start();
+    }
+
+    private void moveTankBy(int dx, int dy) {
+        if (dx == 0 && dy == 0) return;
+
+        final double cx = tank.getBoundsInLocal().getWidth() / 2;
+        final double cy = tank.getBoundsInLocal().getHeight() / 2;
+
+        double x = cx + tank.getLayoutX() + dx;
+        double y = cy + tank.getLayoutY() + dy;
+
+        moveTankTo(x, y);
+    }
+
+    private void moveTankTo(double x, double y) {
+        final double cx = tank.getBoundsInLocal().getWidth() / 2;
+        final double cy = tank.getBoundsInLocal().getHeight() / 2;
+
+        if (x - cx >= 0 &&
+                x + cx <= GAME_WIDTH &&
+                y - cy >= 0 &&
+                y + cy <= GAME_HEIGHT) {
+            tank.relocate(x - cx, y - cy);
+        }
     }
 
     public Stage getGameStage() {
