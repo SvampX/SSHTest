@@ -12,29 +12,23 @@ public class GameViewManager {
     private Scene gameScene;
     private Stage gameStage;
 
-    private static final int GAME_WIDTH = 1024;
-    private static final int GAME_HEIGHT = 768;
+    private static final int GAME_WIDTH = 750;
+    private static final int GAME_HEIGHT = 750;
 
-    private GridPane gridPane1;
+    private GridPane backgroundGridPane;
     private GridPane gridPane2;
     private final static String  BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
 
     private void createBackground(){
-        gridPane1 = new GridPane();
-        gridPane2 = new GridPane();
+        backgroundGridPane = new GridPane();
 
-        for(int i = 0;i<12;i++){
+        for(int i = 0;i<9;i++){
             ImageView backgroundImage1 = new ImageView(BACKGROUND_IMAGE);
-            ImageView backgroundImage2 = new ImageView(BACKGROUND_IMAGE);
             GridPane.setConstraints(backgroundImage1, i%3,i/3);
-            GridPane.setConstraints(backgroundImage2, i%3,i/3);
-            gridPane1.getChildren().add(backgroundImage1);
-            gridPane1.getChildren().add(backgroundImage2);
+            backgroundGridPane.getChildren().add(backgroundImage1);
         }
 
-        gridPane2.setLayoutY(-1024);
-
-        gamePane.getChildren().addAll(gridPane1,gridPane2);
+        gamePane.getChildren().addAll(backgroundGridPane);
     }
 
     public GameViewManager(){
