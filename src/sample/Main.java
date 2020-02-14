@@ -36,12 +36,12 @@ public class Main extends Application {
 
         primaryStage.show();
     }
+
     public static void startNewGame(Stage curStage){
         curStage.close();
         GameViewManager gameViewManager = new GameViewManager();
         Stage newStage = gameViewManager.getGameStage();
         newStage.show();
-
     }
 
 
