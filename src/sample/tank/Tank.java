@@ -1,10 +1,9 @@
 package sample.tank;
-
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.Interface.Alive;
 import sample.Interface.Movable;
@@ -16,12 +15,9 @@ import java.util.List;
 public class Tank extends Solid implements Alive, Movable {
     private final static String TANK_IMAGE_BLUE = "view/resources/tank_blue.png";
     private final static String TANK_IMAGE_GREEN = "view/resources/tank_green.png";
-
     private int tank_health = 100;
     boolean goUp, goDown, goRight, goLeft;
     Solid newTank = new Solid();
-    Node tankSUKA;
-
 
     @Override
     public boolean isAlive() {
@@ -36,7 +32,7 @@ public class Tank extends Solid implements Alive, Movable {
         return tank_health;
     }
 
-    public void moveTank(Scene scene, Solid solid) {
+    public void moveTank(Scene scene) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -85,42 +81,41 @@ public class Tank extends Solid implements Alive, Movable {
                 int dx = 0;
                 int dy = 0;
 
+
                 if (goUp) {
-                    dy -= 1;
+                    dy -= 1.5;
                     newTank.setRotate(180.0);
                 }
                 if (goDown) {
-                    dy += 1;
+                    dy += 1.5;
                     newTank.setRotate(0.0);
                 }
                 if (goLeft) {
-                    dx += 1;
-                    newTank.setRotate(270.0);
+                    dx -= 1.5;
+                    newTank.setRotate(90.0);
                 }
                 if (goRight) {
-                    dx -= 1;
-                    tankSUKA.setRotate(90.0);
+                    dx += 1.5;
+                    newTank.setRotate(270.0);
                 }
-                moveTankBy(dx, dy);
+              moveTankBy(dx,dy);
             }
         };
         animationTimer.start();
     }
-
     public void moveTankBy(int dx, int dy) {
         if (dx == 0 && dy == 0)
             return;
-        final double cx = tankSUKA.getBoundsInLocal().getWidth() / 2;
-        final double cy = tankSUKA.getBoundsInLocal().getHeight() / 2;
+        final double cx = newTank.getBoundsInLocal().getWidth() / 2;
+        final double cy = newTank.getBoundsInLocal().getHeight() / 2;
 
-        double x = cx + tankSUKA.getLayoutX() + dx;
-        double y = cy + tankSUKA.getLayoutY() + dy;
+        double x = cx + newTank.getLayoutX() + dx;
+        double y = cy + newTank.getLayoutY() + dy;
         moveTankTo(x, y);
     }
-
     public void moveTankTo(double x, double y) {
-        final double cx = tankSUKA.getBoundsInLocal().getWidth() / 2;
-        final double cy = tankSUKA.getBoundsInLocal().getHeight() / 2;
+        final double cx = newTank.getBoundsInLocal().getWidth() / 2;
+        final double cy = newTank.getBoundsInLocal().getHeight() / 2;
 
         if (x - cx >= 0 &&
                 x + cx <= 750 &&
@@ -129,15 +124,14 @@ public class Tank extends Solid implements Alive, Movable {
             newTank.relocate(x - cx, y - cy);
         }
     }
-
-    public void createTank(Solid tank12, List list, AnchorPane anchorPane) {
-        tank12 = new Solid(tank12);
-        tank12.setLayoutX(500);
-        tank12.setLayoutY(500);
-        tank12.setFitHeight(40);
-        tank12.setFitWidth(40);
-        list.add(tank12);
-        anchorPane.getChildren().addAll(tank12);
+    public void createTank( List list, AnchorPane anchorPane){
+        newTank = new Solid(newTank);
+        newTank.setLayoutX(500);
+        newTank.setLayoutY(500);
+        newTank.setFitHeight(40);
+        newTank.setFitWidth(40);
+        list.add(newTank);
+        anchorPane.getChildren().addAll(newTank);
     }
 
 

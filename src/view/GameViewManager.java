@@ -49,12 +49,13 @@ public class GameViewManager {
         initializeStage();
         createBackground();
         tankCreate = new Tank();
-        tankCreate.createTank(tankSolid,sceneObjects,gamePane);
+        tankCreate.createTank(sceneObjects,gamePane);
+
         createKeyListners();
     }
 
     private void createKeyListners() {
-
+        tankCreate.moveTank(gameScene);
     }
 
     public Stage getGameStage() {
