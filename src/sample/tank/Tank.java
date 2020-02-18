@@ -124,7 +124,7 @@ public class Tank extends Solid implements Alive, Movable {
             newTank.relocate(x - cx, y - cy);
         }
     }
-    public void createTank( List list, AnchorPane anchorPane){
+    /*public void createTank( List list, AnchorPane anchorPane){
         newTank = new Solid(newTank);
         newTank.setLayoutX(500);
         newTank.setLayoutY(500);
@@ -132,7 +132,7 @@ public class Tank extends Solid implements Alive, Movable {
         newTank.setFitWidth(40);
         list.add(newTank);
         anchorPane.getChildren().addAll(newTank);
-    }
+    }*/
 
 
     @Override

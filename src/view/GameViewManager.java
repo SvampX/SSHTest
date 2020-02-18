@@ -31,8 +31,8 @@ public class GameViewManager {
 
     private GridPane backgroundGridPane;
     private final static String BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
-    Tank tankCreate;
-    Solid tankSolid  = new Solid();
+  /*  Tank tankCreate;
+    Solid tankSolid  = new Solid();*/
 
 
     private void createBackground() {
@@ -89,15 +89,16 @@ public class GameViewManager {
         gameStage = new Stage();
         gameStage.setTitle("SeriousTank");
         gameStage.setScene(gameScene);
-        //Вот тут мы добавляем стартовые обьекты на сцене: tank, brick wall, immortal wall
+
     }
-    private void addObject() {
+    private void addObject() {//Вот тут мы добавляем стартовые обьекты на сцене: tank, brick wall, immortal wall
         Solid testBlock = new Solid();
-        testBlock.setLayoutX(0);
-        testBlock.setFitWidth(100);
-        testBlock.setFitHeight(100);
-        testBlock.setLayoutY(0);
         sceneObjects.add(testBlock);
+        Solid blockWithPosition  = new Solid(300,300,"ff");
+        sceneObjects.add(blockWithPosition);
+        Solid blockWithPosAndSize = new Solid(500,300,20,30,"view/resources/tank_blue.png");
+        sceneObjects.add(blockWithPosAndSize);
+        //Tank tank = new Tank(100,200);
         gamePane.getChildren().addAll(sceneObjects);
     }
 }

@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rectangle {
+    public Point getLeftHigh() {
+        return leftHigh;
+    }
+
+    public Point getRightLow() {
+        return rightLow;
+    }
+
     private Point leftHigh;
     private Point rightLow;
     private List<Point> square = new ArrayList<>();
