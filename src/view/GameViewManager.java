@@ -9,8 +9,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import sample.tank.Tank;
 import sample.solid.Solid;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,32 +30,22 @@ public class GameViewManager {
     private static final int GAME_HEIGHT = 750;
 
     private GridPane backgroundGridPane;
-    private final static String  BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
+    private final static String BACKGROUND_IMAGE = "view/resources/terrainTiles_default.png";
+    Tank tankCreate;
+    Solid tankSolid  = new Solid();
 
 
-    public GameViewManager(){
-        initializeStage();
-        createBackground();
-        addObject();
-        createKeyListeners();
-    }
-    public void createNewGame(Stage menuStage){
-        this.menuStage = menuStage;
-        this.menuStage.hide();
-        gameStage.show();
-    }
-    private void createBackground(){
+    private void createBackground() {
         backgroundGridPane = new GridPane();
-        for(int i = 0;i<9;i++){
+
+        for (int i = 0; i < 9; i++) {
             ImageView backgroundImage1 = new ImageView(BACKGROUND_IMAGE);
-            GridPane.setConstraints(backgroundImage1, i%3,i/3);
+            GridPane.setConstraints(backgroundImage1, i % 3, i / 3);
             backgroundGridPane.getChildren().add(backgroundImage1);
         }
         gamePane.getChildren().addAll(backgroundGridPane);
+
     }
-
-
-
     private void createKeyListeners() {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -75,13 +65,15 @@ public class GameViewManager {
             }
         });
     }
-    public Stage getGameStage(){
+
+    public Stage getGameStage() {
         //createBackground();
         return gameStage;
     }
+
     private void initializeStage() {
         gamePane = new AnchorPane();
-        gameScene = new Scene(gamePane,GAME_WIDTH,GAME_HEIGHT);
+        gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
         gameStage = new Stage();
         gameStage.setTitle("SeriousTank");
         gameStage.setScene(gameScene);
