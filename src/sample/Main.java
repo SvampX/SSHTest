@@ -10,31 +10,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import view.GameViewManager;
+import view.ViewManager;
 
 
 public class Main extends Application {
+    /* TODO: subscene from main menu 6*/
+    /* TODO: choose tank subscene 7- 8*/
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        AnchorPane mainPane = new AnchorPane();
-        Button buttonStart = new Button();
-        buttonStart.setText("START");
-        buttonStart.setLayoutX(150);
-        buttonStart.setLayoutY(150);
-        buttonStart.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                startNewGame(primaryStage);
-            }
-        });
+        ViewManager manager = new ViewManager();
+        primaryStage = manager.getMainStage();
+        primaryStage.show();
+       /*
         mainPane.getChildren().add(buttonStart);
         Scene mainScene= new Scene(mainPane,500,300);
-        primaryStage.setTitle("SeriousTank");
-        primaryStage.setScene(mainScene);
+        primaryStage.
 
-
-        primaryStage.show();
+        */
     }
     public static void startNewGame(Stage curStage){
         curStage.close();
