@@ -70,6 +70,18 @@ public class GameViewManager {
         //createBackground();
         return gameStage;
     }
+    public GameViewManager(){
+        initializeStage();
+        createBackground();
+        addObject();
+        createKeyListeners();
+    }
+
+    public void createNewGame(Stage menuStage){
+        this.menuStage = menuStage;
+        this.menuStage.hide();
+        gameStage.show();
+    }
 
     private void initializeStage() {
         gamePane = new AnchorPane();
